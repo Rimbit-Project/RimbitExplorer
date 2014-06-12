@@ -40,7 +40,7 @@ section#main{
     left: calc(50% - 100px);
 }
 #navP1, #navP3{
-    width: 40px;
+    width: 60px;
 }
 #navP3{
     right: 0;
