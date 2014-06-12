@@ -10,6 +10,14 @@ th{
 section#main{
     width: 100%;
 }
+#rimbitlogo{
+    display: block;
+    margin-left: 50%;
+    right: 158px;
+    position: relative;
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
 #footer{
     text-align: center;
     height: 60px;
