@@ -12,11 +12,17 @@ section#main{
 }
 #rimbitlogo{
     display: block;
-    margin-left: 50%;
-    right: 158px;
     position: relative;
-    padding-bottom: 20px;
-    padding-top: 50px;
+    padding: 20px;
+}
+#links{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+#links a{
+    display: block;
+    padding: 5px;
 }
 #footer{
     text-align: center;

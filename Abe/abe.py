@@ -407,15 +407,20 @@ class Abe:
         hi = get_int_param(page, 'hi')
         orig_hi = hi
 
-        if hi is None:
-            row = abe.store.selectrow("""
-                SELECT b.block_height
-                  FROM block b
-                  JOIN chain c ON (c.chain_last_block_id = b.block_id)
-                 WHERE c.chain_id = ?
-            """, (chain.id,))
-            if row:
+        row = abe.store.selectrow("""
+            SELECT b.block_height
+            FROM block b
+            JOIN chain c ON (c.chain_last_block_id = b.block_id)
+            WHERE c.chain_id = ?
+        """, (chain.id,))
+
+        if row:
+	    max_height = row[0]
+            if hi is None:
                 hi = row[0]
+	else:
+	    max_height = 0
+
         if hi is None:
             if orig_hi is None and count > 0:
                 body += ['<p>I have no blocks in this chain.</p>']
@@ -442,10 +447,13 @@ class Abe:
             hi = int(rows[0][1])
         basename = os.path.basename(page['env']['PATH_INFO'])
 
-        nav = ['<div id="nav"><p id="navP1"><a href="',
+        nav = ['<div id="nav"><p id="navP1">']
+	if max_height > hi:
+	    nav += ['<a href="',
                basename, '?count=', str(count), '">&#9668;&#9668;</a>']
-        nav += [' <a href="', basename, '?hi=', str(hi + count),
-                 '&amp;count=', str(count), '">&#9668;<lt;</a></p><p id="navP2">']
+            nav += [' <a href="', basename, '?hi=', str(hi + count),
+                 '&amp;count=', str(count), '">&#9668;<lt;</a>']
+        nav += ['</p><p id="navP2">']
                  
         for c in (20, 50, 100, 500, 1000):
             nav += [' ']
@@ -460,14 +468,13 @@ class Abe:
 
         nav += ['</p><p id="navP3">']         
                  
-        nav += [' ', '&#9658;']
         if hi >= count:
-            nav[-1] = ['<a href="', basename, '?hi=', str(hi - count),
-                        '&amp;count=', str(count), '">', nav[-1], '</a>']
-        nav += [' ', '&#9658;&#9658;']
+            nav += ['<a href="', basename, '?hi=', str(hi - count),
+                        '&amp;count=', str(count), '"> &#9658;</a>']
+
         if hi != count - 1:
-            nav[-1] = ['<a href="', basename, '?hi=', str(count - 1),
-                        '&amp;count=', str(count), '">', nav[-1], '</a>']
+            nav += ['<a href="', basename, '?hi=', str(count - 1),
+                        '&amp;count=', str(count), '"> &#9658;&#9658;</a>']
         nav += ['</p></div>']
         
         extra = False
