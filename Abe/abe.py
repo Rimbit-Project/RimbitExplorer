@@ -69,7 +69,7 @@ DEFAULT_TEMPLATE = """
 </head>
 <body onload="parent.explorerLoaded()">
     <section id="main">
-    <a href="rimbit.com" title="Go to rimbit.com">
+    <a href="http://rimbit.com" title="Go to rimbit.com">
     	<img id="rimbitlogo" alt="Back to rimbit.com" src="%(dotdot)s%(STATIC_PATH)srimbitexplorer-logo.png" />
     </a>
     %(body)s
