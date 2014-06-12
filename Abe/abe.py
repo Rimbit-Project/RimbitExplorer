@@ -69,9 +69,13 @@ DEFAULT_TEMPLATE = """
 </head>
 <body onload="parent.explorerLoaded()">
     <section id="main">
-    <a href="http://rimbit.com" title="Go to rimbit.com">
-    	<img id="rimbitlogo" alt="Back to rimbit.com" src="%(dotdot)s%(STATIC_PATH)srimbitexplorer-logo.png" />
+    <a href="http://rimbitexplorer.com" title="Go to RimbitExplorer.com">
+    	<img id="rimbitlogo" alt="Back to rimbitexplorer.com" src="%(dotdot)s%(STATIC_PATH)srimbitexplorer-logo.png" />
     </a>
+    <div id="links">
+        <a href="http://rimbitexplorer.com" title="Go to RimbitExplorer.com">RimbitExplorer.com</a>
+        <a href="http://rimbit.com" title="Go to Rimbit.com">Rimbit.com</a>
+    </div>
     %(body)s
         <div id="footer">
             <p><a href="%(dotdot)sq">API</a> (machine-readable pages)</p>
