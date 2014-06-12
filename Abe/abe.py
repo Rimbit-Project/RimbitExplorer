@@ -69,6 +69,9 @@ DEFAULT_TEMPLATE = """
 </head>
 <body onload="parent.explorerLoaded()">
     <section id="main">
+    <a href="rimbit.com" title="Go to rimbit.com">
+    	<img id="rimbitlogo" alt="Back to rimbit.com" src="%(dotdot)s(STATIC_PATH)srimbitexplorer-logo.png" />
+    </a>
     %(body)s
         <div id="footer">
             <p><a href="%(dotdot)sq">API</a> (machine-readable pages)</p>
@@ -440,9 +443,9 @@ class Abe:
         basename = os.path.basename(page['env']['PATH_INFO'])
 
         nav = ['<div id="nav"><p id="navP1"><a href="',
-               basename, '?count=', str(count), '">&lt;&lt;</a>']
+               basename, '?count=', str(count), '">&#9668;&#9668;</a>']
         nav += [' <a href="', basename, '?hi=', str(hi + count),
-                 '&amp;count=', str(count), '">&lt;</a></p><p id="navP2">']
+                 '&amp;count=', str(count), '">&#9668;<lt;</a></p><p id="navP2">']
                  
         for c in (20, 50, 100, 500, 1000):
             nav += [' ']
@@ -457,11 +460,11 @@ class Abe:
 
         nav += ['</p><p id="navP3">']         
                  
-        nav += [' ', '&gt;']
+        nav += [' ', '&#9658;']
         if hi >= count:
             nav[-1] = ['<a href="', basename, '?hi=', str(hi - count),
                         '&amp;count=', str(count), '">', nav[-1], '</a>']
-        nav += [' ', '&gt;&gt;']
+        nav += [' ', '&#9658;&#9658;']
         if hi != count - 1:
             nav[-1] = ['<a href="', basename, '?hi=', str(count - 1),
                         '&amp;count=', str(count), '">', nav[-1], '</a>']
