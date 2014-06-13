@@ -1806,7 +1806,7 @@ class Abe:
             return 'X5'
         return 'SZ'
 
-    def q_getrimmbitprice(abe, page, chain):
+    def q_getrimbitprice(abe, page, chain):
 	"""Gives value of the rimbit price in USD"""
         now = int(time.time())
 	days = (now-START_TIME)/(60*60*24)
