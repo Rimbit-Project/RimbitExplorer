@@ -255,7 +255,7 @@ class Abe:
                 # cron job.
                 abe.store.catch_up()
             
-	    abe.search_form(page)
+	    page += abe.search_form(page)
 
             handler(page)
         except PageNotFound:
