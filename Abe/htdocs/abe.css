@@ -14,6 +14,7 @@ section#main{
     display: block;
     position: relative;
     padding: 20px;
+    padding-bottom: 50px;
 }
 #links{
     position: absolute;
