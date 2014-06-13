@@ -52,6 +52,11 @@ DONATIONS_BTC = '1ExARP8eBAYGT39HBzzbN5nsB8t5C4w4Tx'
 TIME1970 = time.strptime('1970-01-01','%Y-%m-%d')
 EPOCH1970 = calendar.timegm(TIME1970)
 
+INITIAL_PRICE = 0.01
+START_TIME = 
+RAMP = 0.01
+SWITCHOVER_DAYS = 300
+
 # Abe-generated content should all be valid HTML and XHTML fragments.
 # Configurable templates may contain either.  HTML seems better supported
 # under Internet Explorer.
@@ -1472,8 +1477,8 @@ class Abe:
         
         last = abe.get_max_block_height(chain)                      
         abe.difficulty_graph(page, "All Time", "alltime", None, "%e %b %Y", abe.get_difficulties(0, last, chain.id))
-        abe.difficulty_graph(page, "4,032 Blocks (Approx. One week)", "oneweek", 86400, "%e %b %Y", abe.get_difficulties(last - 4032, last, chain.id))
-        abe.difficulty_graph(page, "576 Blocks (Approx. One day)", "oneday", 3600, "%R", abe.get_difficulties(last - 576, last, chain.id))
+        abe.difficulty_graph(page, "1,260 Blocks (Approx. One week)", "oneweek", 86400, "%e %b %Y", abe.get_difficulties(last - 1260, last, chain.id))
+        abe.difficulty_graph(page, "180 Blocks (Approx. One day)", "oneday", 3600, "%R", abe.get_difficulties(last - 180, last, chain.id))
         
     def handle_t(abe, page):
         abe.show_search_results(
@@ -1800,6 +1805,17 @@ class Abe:
         if len(addr) >= 26:
             return 'X5'
         return 'SZ'
+
+    def q_getrimmbitprice(abe, page, chain):
+	"""Gives value of the rimbit price in USD"""
+        now = int(time.time())
+	days = (now-START_TIME)/(60*60*24)
+
+	if days >= SWITCHOVER_DAYS:
+	    # TODO: Implement future price logic
+	    return "3.00"
+
+    return '%.2f' % (INITIAL_PRICE + RAMP * days)
 
     def q_getvalidhashes(abe, page, chain):
         """Provides valid hashes following a hash in a POST request"""
