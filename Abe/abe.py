@@ -53,7 +53,7 @@ TIME1970 = time.strptime('1970-01-01','%Y-%m-%d')
 EPOCH1970 = calendar.timegm(TIME1970)
 
 INITIAL_PRICE = 0.01
-START_TIME = 
+START_TIME = 1403510400
 RAMP = 0.01
 SWITCHOVER_DAYS = 300
 
@@ -1811,11 +1811,14 @@ class Abe:
         now = int(time.time())
 	days = (now-START_TIME)/(60*60*24)
 
+	if days < 0:
+	    days = 0
+
 	if days >= SWITCHOVER_DAYS:
 	    # TODO: Implement future price logic
 	    return "3.00"
 
-    return '%.2f' % (INITIAL_PRICE + RAMP * days)
+        return '%.2f' % (INITIAL_PRICE + RAMP * days)
 
     def q_getvalidhashes(abe, page, chain):
         """Provides valid hashes following a hash in a POST request"""
