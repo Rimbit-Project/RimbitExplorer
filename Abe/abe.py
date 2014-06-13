@@ -219,7 +219,7 @@ class Abe:
         page = {
             "title": [escape(ABE_APPNAME), " ", ABE_VERSION],
             "extraHead": [],
-            "body": [],
+            "body": abe.search_form(page),
             "env": env,
             "params": {},
             "dotdot": "../" * (env['PATH_INFO'].count('/') - 1),
@@ -405,7 +405,6 @@ class Abe:
         page['title'] = chain.name
 
         body = page['body']
-        body += abe.search_form(page)
 
         count = get_int_param(page, 'count') or 20
         hi = get_int_param(page, 'hi')
@@ -1225,7 +1224,7 @@ class Abe:
     def search_form(abe, page):
         q = (page['params'].get('q') or [''])[0]
         return [
-            '<article class="module width_half centerHalf">'
+            '<article id="search" class="module width_half centerHalf">'
             '<header><h3>SEARCH</h3></header>'
             '<div class="module_content">'
             '<form action="', page['dotdot'], 'search">\n'

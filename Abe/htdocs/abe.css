@@ -17,12 +17,20 @@ section#main{
 }
 #links{
     position: absolute;
-    right: 30px;
-    top: 20px;
+    right: 40px;
+    top: 36px;
 }
 #links a{
     display: block;
     padding: 5px;
+}
+#search{
+    position: absolute;
+    top: 0;
+    left: 400px;
+    margin-left: 0;
+    width: auto;
+    right: 200px;
 }
 #footer{
     text-align: center;
