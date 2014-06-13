@@ -219,7 +219,7 @@ class Abe:
         page = {
             "title": [escape(ABE_APPNAME), " ", ABE_VERSION],
             "extraHead": [],
-            "body": abe.search_form(page),
+            "body": [],
             "env": env,
             "params": {},
             "dotdot": "../" * (env['PATH_INFO'].count('/') - 1),
@@ -254,6 +254,8 @@ class Abe:
                 # for a response!  XXX Could use threads, timers, or a
                 # cron job.
                 abe.store.catch_up()
+            
+	    abe.search_form(page)
 
             handler(page)
         except PageNotFound:
